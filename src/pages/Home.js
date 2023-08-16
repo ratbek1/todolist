@@ -32,7 +32,7 @@ const Home = () => {
             }}
             onChange={(e) => SetValue(e.target.value)}
             type="text"
-            class="block outline-none w-[400px] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="block outline-none w-[400px] p-4 pl-10 text-md text-black border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-900  dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Text"
             required
           />
@@ -46,7 +46,7 @@ const Home = () => {
       </div>
       <div className="flex justify-center items-center flex-col mt-20 mr-24">
         {task.map((el) => (
-          <HomeList el={el} task={task} setTask={setTask} local={local} />
+          <HomeList el={el} task={task} setTask={setTask} />
         ))}
       </div>
     </div>

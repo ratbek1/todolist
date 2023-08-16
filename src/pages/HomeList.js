@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { AiTwotoneEdit } from "react-icons/ai";
+import { FaCheck } from "react-icons/fa";
 
 const HomeList = ({ el, task, setTask }) => {
   const [newValue, SetNewValue] = useState("");
@@ -6,7 +8,7 @@ const HomeList = ({ el, task, setTask }) => {
   const DelTask = (id) => {
     const Del = task.filter((el) => el.id !== id);
     setTask(Del);
-    localStorage.setItem("list", JSON.stringify(Del)); // Сохранение обновленных задач в localStorage
+    localStorage.setItem("list", JSON.stringify(Del));
   };
   return (
     <ul className=" text-white">
@@ -17,7 +19,7 @@ const HomeList = ({ el, task, setTask }) => {
               defaultValue={el.title}
               onChange={(e) => SetNewValue(e.target.value)}
               type="text"
-              className="w-[200px] text-black"
+              className="w-[200px] text-black rounded-md px-2 outline-none"
             />
           ) : (
             (el.title = newValue || el.title)
@@ -25,22 +27,22 @@ const HomeList = ({ el, task, setTask }) => {
         </li>
         <div>
           <button
-            className="bg-yellow-500 py-1 px-4 text-white rounded-md mx-2"
+            className="bg-yellow-500 py-[6.5px] px-4 text-white rounded-md mx-2"
             onClick={() => {
               setRename(!rename);
               if (rename) {
                 const updatedTasks = task.map((item) => {
                   if (item.id === el.id) {
-                    return { ...item, title: newValue };
+                    return { ...item, title: newValue || el.title };
                   }
                   return item;
                 });
                 setTask(updatedTasks);
-                localStorage.setItem("list", JSON.stringify(updatedTasks)); // Сохранение обновленных задач в localStorage
+                localStorage.setItem("list", JSON.stringify(updatedTasks));
               }
             }}
           >
-            {rename ? "save" : "edit"}
+            {rename ? <FaCheck /> : <AiTwotoneEdit />}
           </button>
           <button
             onClick={() => DelTask(el.id)}
